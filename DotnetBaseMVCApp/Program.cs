@@ -1,4 +1,13 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using MySql.Data;
+using System.Data.Entity;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// connect to mysql
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// builder.Services.AddDbContext<DbContext>(options => options.UseMySQL(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
