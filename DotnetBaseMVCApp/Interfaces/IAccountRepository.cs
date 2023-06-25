@@ -2,8 +2,8 @@ using DotnetBaseMVCApp.Models;
 
 namespace DotnetBaseMVCApp.Interfaces
 {
-    public interface IAccountInterface
+    public interface IAccountRepository
     {
-
+        bool Create(Account account);
     }
 }

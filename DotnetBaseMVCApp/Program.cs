@@ -1,16 +1,20 @@
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using MySql.Data;
-using System.Data.Entity;
+using DotnetBaseMVCApp.Data;
+using DotnetBaseMVCApp.Interfaces;
+using DotnetBaseMVCApp.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // connect to mysql
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-// builder.Services.AddDbContext<DbContext>(options => options.UseMySQL(connectionString));
+var services = builder.Services;
+services.AddDbContext<DbContext>(options => options.UseSqlServer(connectionString));
+
+// add scoped for Repository
+services.AddScoped<IAccountRepository, AccountRepository>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+services.AddControllersWithViews();
 
 var app = builder.Build();
 
